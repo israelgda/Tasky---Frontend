@@ -1,6 +1,6 @@
 <div class="container">
     <div class="badge">
-      <button mat-raised-button color="primary" matBadge="{{ closedTasks }}" matBadgeColor="accent"> Tasks Finalizadas</button>
+      <button (click)="finalizados()" mat-raised-button color="primary" matBadge="{{ closedTasks }}" matBadgeColor="accent"> Tasks Finalizadas</button>
     </div>
 
     <button class="nova-task mat-elevation-z8" mat-raised-button color="primary">Nova Task</button>
