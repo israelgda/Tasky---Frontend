@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080/tasks'
+  baseUrl: 'http://localhost:8080/tasks',
+  closedUrl: 'http://localhost:8080/tasks/closed',
+  openUrl: 'http://localhost:8080/tasks/open'
 };
 
 /*

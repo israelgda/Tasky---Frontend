@@ -9,17 +9,51 @@ import { TasksService } from 'src/app/services/tasks.service';
 })
 export class ReadAllComponent implements OnInit {
 
-  list: Tasks[] = [];
+  /*Variáveis*/
+  closedTasks = 0;
+  listAllOpen: Tasks[] = [];
+  listClosed: Tasks[] = [];
+
 
   constructor(private service: TasksService) { }
 
-  ngOnInit(): void {
-    this.findAll();
+  ngOnInit(): void{
+    this.findAllOpen();
+    this.findAllClosed();
   }
-
+  /*
   findAll(): void{
     this.service.findAll().subscribe((resposta) => {
-      this.list = resposta;
+      resposta.forEach(Tasks =>{
+        if(Tasks.finalizado){
+          this.listFinished.push(Tasks);
+        }else{
+          this.listAll.push(Tasks);
+        }
+      })
+      this.closedTasks = this.listFinished.length;
+    })
+  }*/
+
+  delete(id: any):void{
+    this.service.deleteTask(id).subscribe((resposta) =>{
+      if(resposta == null){
+        this.service.message('Task apagada com sucesso!');
+        this.listAllOpen = this.listAllOpen.filter(Tasks => Tasks.id !== id);
+      }
+    })
+  }
+  
+  findAllOpen(): void{
+    this.service.findOpen().subscribe((resposta) => {
+      this.listAllOpen = resposta;
+    })
+  }
+
+  findAllClosed(): void{
+    this.service.findClosed().subscribe((resposta) => {
+      this.listClosed = resposta;
+      this.closedTasks = this.listClosed.length;
     })
   }
 }

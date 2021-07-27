@@ -10,7 +10,7 @@
 .nova-task{
     width: 100%;
     float: center;
-    margin-top: 3rem;
+    margin-top: 0.5rem;
     justify-content: center;
 }
 
@@ -31,4 +31,9 @@ p{
 
 .actions button{
     margin: 0.5rem;
+}
+
+.badge{
+    margin-top: 0.5rem;
+    text-align: end;
 }

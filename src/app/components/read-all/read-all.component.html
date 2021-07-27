@@ -1,7 +1,11 @@
 <div class="container">
+    <div class="badge">
+      <button mat-raised-button color="primary" matBadge="{{ closedTasks }}" matBadgeColor="accent"> Tasks Finalizadas</button>
+    </div>
+
     <button class="nova-task mat-elevation-z8" mat-raised-button color="primary">Nova Task</button>
     
-    <div class="content" *ngFor="let item of list">
+    <div class="content" *ngFor="let item of listAllOpen">
         <mat-card class="mat-elevation-z8">
             <mat-card-header>
               <mat-card-title>{{ item.titulo }}</mat-card-title>
@@ -17,7 +21,7 @@
               <button mat-mini-fab color="accent">
                 <mat-icon>edit</mat-icon>
               </button>
-              <button mat-mini-fab color="warn">
+              <button (click)="delete(item.id)" mat-mini-fab color="warn">
                 <mat-icon>delete</mat-icon>
               </button>
             </div>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tasks } from '../models/tasks';
@@ -10,10 +11,40 @@ import { Tasks } from '../models/tasks';
 export class TasksService {
 
   baseUrl = environment.baseUrl;
+  closedUrl = environment.closedUrl;
+  openUrl = environment.openUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private snack: MatSnackBar) { }
 
+  /*Métodos de listagem das Tasks*/
+
+  /*Método para retornar todas as Tasks*/ 
   findAll(): Observable<Tasks[]> {
     return this.http.get<Tasks[]>(this.baseUrl);
+  }
+
+  /*Método para retornar todas as fechadas*/ 
+  findClosed(): Observable<Tasks[]> {
+    return this.http.get<Tasks[]>(this.closedUrl);
+  }
+
+  /*Método para retornar todas as abertas*/ 
+  findOpen(): Observable<Tasks[]> {
+    return this.http.get<Tasks[]>(this.openUrl);
+  }
+
+  /*Métodos CRUD*/
+  deleteTask(id: any): Observable<void>{
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.delete<void>(url);
+  }
+
+  /*Métodos de mensagens de alerta*/
+  message(msg: String): void{
+    this.snack.open(`${msg}`, 'Ok', {
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      duration: 4000
+    });
   }
 }
