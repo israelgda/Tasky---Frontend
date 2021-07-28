@@ -16,8 +16,11 @@ export class TasksService {
 
   constructor(private http: HttpClient, private snack: MatSnackBar) { }
 
-  /*Métodos de listagem das Tasks*/
-
+  /*Métodos de finByid das Tasks*/
+  findById(id: any): Observable<Tasks>{
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.get<Tasks>(url);
+  }
   /*Método para retornar todas as Tasks*/ 
   findAll(): Observable<Tasks[]> {
     return this.http.get<Tasks[]>(this.baseUrl);

@@ -1,0 +1,32 @@
+<form>
+    <div class="page-title">
+        <h1>Editando Task</h1>
+    </div>
+
+        <div class="data-final">
+            <mat-form-field class="form-data-final" appearance="fill">
+                <mat-label>Data Para Finalizar</mat-label>
+                <input [(ngModel)]="task.dataFinal" name="task.dataFinal" matInput [matDatepicker]="dp3" disabled>
+                <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+              </mat-form-field>
+        </div>
+
+        <div class="titulo">
+            <mat-form-field class="form-titulo" appearance="fill">
+                <mat-label>Titulo da Task</mat-label>
+                <input [(ngModel)]="task.titulo" name="task.titulo" matInput placeholder="Título">
+            </mat-form-field>
+        </div>
+        <div class="descricao">
+            <mat-form-field class="form-descricao" appearance="fill">
+                <mat-label>Descrição da Task</mat-label>
+                <input [(ngModel)]="task.descricao" name="task.descricao" matInput placeholder="Descreva a task">
+            </mat-form-field>
+        </div>
+
+        <div class="buttons">
+            <button (click)="salvar()" mat-raised-button color="primary">Salvar</button>
+            <button (click)="cancelar()" mat-raised-button color="warn">Cancelar</button>
+        </div>
+</form>
