@@ -34,6 +34,13 @@ export class TasksService {
   }
 
   /*Métodos CRUD*/
+  create(task: Tasks): Observable<Tasks>{
+    return this.http.post<Tasks>(this.baseUrl, task);
+  }
+  updateTask(task: Tasks): Observable<Tasks>{
+    const url = `${this.baseUrl}/${task.id}`;
+    return this.http.put<Tasks>(url, task);
+  }
   deleteTask(id: any): Observable<void>{
     const url = `${this.baseUrl}/${id}`;
     return this.http.delete<void>(url);

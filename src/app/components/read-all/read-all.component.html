@@ -3,7 +3,7 @@
       <button (click)="finalizados()" mat-raised-button color="primary" matBadge="{{ closedTasks }}" matBadgeColor="accent"> Tasks Finalizadas</button>
     </div>
 
-    <button class="nova-task mat-elevation-z8" mat-raised-button color="primary">Nova Task</button>
+    <button (click)="novaTask()" class="nova-task mat-elevation-z8" mat-raised-button color="primary">Nova Task</button>
     
     <div class="content" *ngFor="let item of listAllOpen">
         <mat-card class="mat-elevation-z8">
@@ -15,7 +15,7 @@
             <p>Data para finalizar: {{item.dataFinal}}</p>
 
             <div class="actions">
-              <button mat-mini-fab color="primary">
+              <button (click)="finalizar(item)" mat-mini-fab color="primary">
                 <mat-icon>done</mat-icon>
               </button>
               <button mat-mini-fab color="accent">

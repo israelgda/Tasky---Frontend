@@ -36,15 +36,6 @@ export class ReadAllComponent implements OnInit {
     })
   }*/
 
-  delete(id: any):void{
-    this.service.deleteTask(id).subscribe((resposta) =>{
-      if(resposta == null){
-        this.service.message('Task apagada com sucesso!');
-        this.listAllOpen = this.listAllOpen.filter(Tasks => Tasks.id !== id);
-      }
-    })
-  }
-  
   findAllOpen(): void{
     this.service.findOpen().subscribe((resposta) => {
       this.listAllOpen = resposta;
@@ -57,8 +48,28 @@ export class ReadAllComponent implements OnInit {
       this.closedTasks = this.listClosed.length;
     })
   }
-
+  //Rotas
   finalizados(): void{
     this.router.navigate(['finalizados'])
+  }
+  novaTask(): void{
+    this.router.navigate(['create'])
+  }
+
+  finalizar(item: Tasks): void{
+    item.finalizado = true;
+    this.service.updateTask(item).subscribe((resposta) =>{
+      this.service.message('Task finalizada com sucesso!');
+      this.listAllOpen = this.listAllOpen.filter(Tasks => Tasks.id !== item.id);
+      this.closedTasks++;
+    });
+  }
+  delete(id: any):void{
+    this.service.deleteTask(id).subscribe((resposta) =>{
+      if(resposta == null){
+        this.service.message('Task apagada com sucesso!');
+        this.listAllOpen = this.listAllOpen.filter(Tasks => Tasks.id !== id);
+      }
+    })
   }
 }
